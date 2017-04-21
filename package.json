@@ -7,7 +7,10 @@
   "author": "Richard Shea <rshea@thecubagroup.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ."
+    "start": "babel-node src"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1"
+  }
 }
