@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:shearichard/stack-from-scratch.git",
   "author": "Richard Shea <rshea@thecubagroup.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+      "start" : "node ."
+  }
 }
