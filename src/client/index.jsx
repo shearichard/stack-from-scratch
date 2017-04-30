@@ -1,14 +1,32 @@
 import 'babel-polyfill'
-/* REACT changes start ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './app'
-/* REACT changes stop  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* REACT hot loader changes start +++++++++++++++++++++++++++++++++++++++++++++ */
+import { AppContainer } from 'react-hot-loader'
+/* REACT hot loader changes stop  +++++++++++++++++++++++++++++++++++++++++++++ */
 
+import App from './app'
 import { APP_CONTAINER_SELECTOR } from '../shared/config'
 
-/* REACT changes start ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* REACT hot loader changes start +++++++++++++++++++++++++++++++++++++++++++++ */
 // document.querySelector(APP_CONTAINER_SELECTOR).innerHTML = '<h1>Hello Webpack - Mark 2!</h1>'
-ReactDOM.render(<App />, document.querySelector(APP_CONTAINER_SELECTOR))
-/* REACT changes stop  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+// ReactDOM.render(<App />, document.querySelector(APP_CONTAINER_SELECTOR))
+const rootEl = document.querySelector(APP_CONTAINER_SELECTOR)
+
+const wrapApp = AppComponent =>
+  <AppContainer>
+    <AppComponent />
+  </AppContainer>
+
+ReactDOM.render(wrapApp(App), rootEl)
+
+if (module.hot) {
+  // flow-disable-next-line
+  module.hot.accept('./app', () => {
+    // eslint-disable-next-line global-require
+    const NextApp = require('./app').default
+    ReactDOM.render(wrapApp(NextApp), rootEl)
+  })
+}
+/* REACT hot loader changes stop  +++++++++++++++++++++++++++++++++++++++++++++ */
