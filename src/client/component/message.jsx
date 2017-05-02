@@ -7,6 +7,6 @@ type Props = {
 }
 
 const Message = ({ message }: Props) =>
-    <p>{message}</p>
+  <p>{message}</p>
 
 export default Message
